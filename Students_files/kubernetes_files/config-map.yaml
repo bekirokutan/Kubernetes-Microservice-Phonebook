@@ -1,0 +1,11 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: env-config
+data:
+  MYSQL_DATABASE_HOST: webmysqlsvc.default
+  MYSQL_DATABASE: phonebook
+  MYSQL_USER: admin
+  DEVELOPER_NAME: BEKİR
+
+

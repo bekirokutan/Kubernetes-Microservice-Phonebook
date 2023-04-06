@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: result-app-deploy
+  labels:
+    name: result-app-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: result-app-pod
+  template:
+    metadata:
+      name: result-app-pod
+      labels:
+        name: result-app-pod
+    spec:
+      containers:
+        - name: result-app
+          resources:
+          image: blgsyrc0560/phonebook-result:latest
+          ports:
+            - containerPort: 80
+          envFrom:
+            - secretRef:
+                name: phonebook-secret
+            - configMapRef:
+                name: env-config

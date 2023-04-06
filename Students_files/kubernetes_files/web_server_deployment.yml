@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-phonebook-deploy
+  labels:
+    app: web-phonebook
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web-phonebook
+  template:
+    metadata:
+      labels:
+        app: web-phonebook
+    spec:
+      containers:
+      - name: web-phonebook-pod
+        resources:
+        image: blgsyrc0560/phonebook-webserver:latest
+        ports:
+        - containerPort: 80
+        envFrom:
+          - secretRef:
+              name: phonebook-secret
+          - configMapRef:
+              name: env-config
+
